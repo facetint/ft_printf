@@ -27,7 +27,12 @@
 
   Bu proje, `printf` fonksiyonunun bir taklidini içeren `ft_printf` kütüphanesini oluşturmayı amaçlar. `ft_printf`, standart `printf` fonksiyonu gibi çalışacak ve çeşitli format dönüşümlerini gerçekleştirecektir. Amacımız, C dilinde variadic fonksiyonlarla çalışmayı öğrenmek ve `printf` fonksiyonunun çalışma prensiplerini anlamaktır.
 
-![ft_printf Banner](![image](https://github.com/user-attachments/assets/b37e5f1b-5a98-4b8c-ac08-6b6f2b50ab37)
+
+<div align="center">
+
+(![image](https://github.com/user-attachments/assets/b37e5f1b-5a98-4b8c-ac08-6b6f2b50ab37)
+
+</div>
 
 ---
 
