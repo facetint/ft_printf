@@ -17,7 +17,6 @@
 - [Proje Gereksinimleri](#proje-gereksinimleri)
 - [Fonksiyon Prototipi](#fonksiyon-prototipi)
 - [Variadic Fonksiyonlar](#variadic-fonksiyonlar)
-    - [Variadic Fonksiyonlarla Çalışmak](#variadic-fonksiyonlarla-calismak)
     - [🛠 va_list, va_start, va_arg, va_end](#va_list-va_start-va_arg-va_end)
 - [Dönüşüm Formatları](#dönüşüm-formatları)
 - [Örnek Kullanım](#örnek-kullanım)
@@ -68,10 +67,6 @@ int ft_printf(const char *format, ...);
 ## Variadic Fonksiyonlar
 
 `printf` gibi fonksiyonlar, değişken sayıda argüman alabilir. Bu tür fonksiyonlara **Variadic Functions** (Değişken Argümanlı Fonksiyonlar) denir. `printf`, aldığı format ve argümanlar sayesinde farklı veri türlerinde veriyi aynı anda işleyebilir.
-
-### Variadic Fonksiyonlarla Çalışmak
-
-C dilinde, variadic fonksiyonları tanımlamak için `<stdarg.h>` başlık dosyası kullanılır. Bu dosyada yer alan bazı önemli fonksiyonla3r:
 
 ### 🛠 va_list, va_start, va_arg, va_end
 
