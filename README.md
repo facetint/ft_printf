@@ -18,11 +18,8 @@
 - [Kullanılabilir Fonksiyonlar](#kullanılabilir-fonksiyonlar)
 - [Fonksiyon Prototipi](#fonksiyon-prototipi)
 - [Dönüşüm Formatları](#dönüşüm-formatları)
-- [Kurulum ve Kullanım](#kurulum-ve-kullanım)
-- [Makefile Komutları](#makefile-komutları)
 - [Örnek Kullanım](#örnek-kullanım)
 - [Kaynaklar](#kaynaklar)
-- [Lisans](#lisans)
 
 ---
 
@@ -74,6 +71,21 @@ int ft_printf(const char *format, ...);
 | `%x`        | Hexadecimal sayı (küçük harfler ile)                   |
 | `%X`        | Hexadecimal sayı (büyük harfler ile)                   |
 | `%%`        | Yüzde işareti `%` yazdırır                             |
+
+## Örnek Kullanım
+
+```c
+
+ft_printf("Karakter: %c\n", 'A');
+ft_printf("Dize: %s\n", "Merhaba");
+ft_printf("Pointer: %p\n", (void *)0x7ffe637541f0);
+ft_printf("Decimal: %d\n", 123);
+ft_printf("Unsigned: %u\n", 456);
+ft_printf("Hexadecimal (küçük harf): %x\n", 0x1a3);
+ft_printf("Hexadecimal (büyük harf): %X\n", 0x1A3);
+ft_printf("Yüzde İşareti: %%\n");
+
+````
 
 ## Kaynaklar
 
