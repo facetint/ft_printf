@@ -15,8 +15,9 @@
 ## 📜 İçerik
 - [Genel Bakış](#genel-bakış)
 - [Proje Gereksinimleri](#proje-gereksinimleri)
-- [Kullanılabilir Fonksiyonlar](#kullanılabilir-fonksiyonlar)
 - [Fonksiyon Prototipi](#fonksiyon-prototipi)
+- [Variadic Fonksiyonlar](#variadic-fonksiyonlar)
+  - 
 - [Dönüşüm Formatları](#dönüşüm-formatları)
 - [Örnek Kullanım](#örnek-kullanım)
 - [Kaynaklar](#kaynaklar)
@@ -48,20 +49,99 @@
     
 ---
 
-## Kullanılabilir Fonksiyonlar
-`ft_printf` fonksiyonunu yazarken aşağıdaki harici fonksiyonlardan yararlanabilirsiniz:
-- **`malloc`**: Bellek tahsisi
-- **`free`**: Bellek serbest bırakma
-- **`write`**: Çıkışa veri yazma
-- **Variadic Fonksiyonlar**:
-  - `va_start`, `va_arg`, `va_copy`, `va_end`
-
----
-
 ## Fonksiyon Prototipi
+
 ```c
 int ft_printf(const char *format, ...);
 ```
+
+**Argümanlar:**
+
+  -  **`format`**: Çıktı biçimini belirten bir dize. Bu dize, ekrana yazdırılacak metin ve değişkenlerin nasıl biçimlendirileceğini belirler. Biçim dizesi, **`%`** işaretleriyle belirtilen biçim belirteçleri içerebilir. Örneğin, **`%d`** bir tamsayıyı, **`%f`** bir ondalık sayıyı gösterir.
+  
+  - **`...`** (elips): Bu, değişken sayıda argüman almak için kullanılan özel bir işarettir. **`printf`** fonksiyonu, **`format`** dizesinde belirtilen biçim belirteçleri kadar argüman alabilir. Bu argümanlar, biçim dizesindeki sıralamaya göre ekrana yazdırılır.
+  
+  - **Dönüş Değeri:`printf`** fonksiyonu, ekrana yazdırılan karakter sayısını (yani başarıyla yazdırılan karakterlerin toplamını) döndürür. Eğer bir hata oluşursa, **`-1`** değeri dönecektir.
+
+
+## Variadic Fonksiyonlar
+
+`printf` gibi fonksiyonlar, değişken sayıda argüman alabilir. Bu tür fonksiyonlara **Variadic Functions** (Değişken Argümanlı Fonksiyonlar) denir. `printf`, aldığı format ve argümanlar sayesinde farklı veri türlerinde veriyi aynı anda işleyebilir.
+
+### Variadic Fonksiyonlarla Çalışmak
+
+C dilinde, variadic fonksiyonları tanımlamak için `<stdarg.h>` başlık dosyası kullanılır. Bu dosyada yer alan bazı önemli fonksiyonla3r:
+
+### 🛠 va_list, va_start, va_arg, va_end
+
+C dilinde variadic fonksiyonlar ile çalışırken, `stdarg.h` kütüphanesinden gelen dört temel makro kullanılır. Bu makrolar, bir fonksiyonun değişken sayıda argümanı işlemesini sağlar.
+
+| **Makro**   | **Açıklama**                                                                                                                                             |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `va_list`   | Variadic fonksiyonun argümanlarını temsil eden bir veri yapısı tanımlar. Bu yapı, argüman listesini tutmak için kullanılır.                              |
+| `va_start`  | Argüman listesinin başlangıcını belirler ve ilk argümanın adresini alır. Fonksiyonun değişken sayıda argüman almasını sağlar.                            |
+| `va_arg`    | Sıradaki argümanı almak için kullanılır. Her çağrıldığında bir sonraki argümanı döndürür ve elde edilecek veri türü belirtilmelidir (ör. `int`, `char`). |
+| `va_end`    | Argüman listesini temizler ve bellek yönetimi açısından işlem tamamlandığında çağrılması gereklidir.                                                     |
+
+Bu makroların kullanımı, `ft_printf` fonksiyonu gibi bir variadic fonksiyonun argümanlarını verimli bir şekilde alıp işlemeyi mümkün kılar.
+
+#### Kullanım Örneği
+
+Aşağıdaki örnek, değişken sayıda argüman alan basit bir variadic fonksiyonun `stdarg.h` makrolarını nasıl kullandığını göstermektedir.
+
+```c
+#include <stdio.h>
+#include <stdarg.h>
+
+void print_numbers(int count, ...) {
+    va_list args;           // Argüman listesini tanımlar
+    va_start(args, count);  // İlk argümanın adresini alır
+
+    for (int i = 0; i < count; i++) {
+        int number = va_arg(args, int);  // Sonraki argümanı alır
+        printf("%d ", number);
+    }
+
+    va_end(args);           // İşlem tamamlandığında argüman listesini temizler
+    printf("\n");
+}
+
+int main() {
+    print_numbers(3, 10, 20, 30);  // Çıktı: 10 20 30
+    return 0;
+}
+Bu variadic özellikler, `ft_printf` fonksiyonunda farklı veri türlerini aynı fonksiyon içinde işleyebilmemizi sağlar. Örneğin, `%d`, `%s` ve `%c` gibi dönüşümler için aynı `ft_printf` çağrısında ilgili veri türlerini kullanabiliriz.
+
+### Örnek: Basit Bir Variadic Fonksiyon
+
+Aşağıda basit bir variadic fonksiyon örneği verilmiştir. Bu örnek, bir variadic fonksiyonun nasıl çalıştığını anlamak için iyi bir başlangıçtır.
+
+```c
+
+#include <stdio.h>
+#include <stdarg.h>
+
+void print_numbers(int count, ...) {
+    va_list args;
+    va_start(args, count);
+
+    for (int i = 0; i < count; i++) {
+        int number = va_arg(args, int);
+        printf("%d ", number);
+    }
+
+    va_end(args);
+    printf("\n");
+}
+
+int main() {
+    print_numbers(3, 10, 20, 30);  // Çıktı: 10 20 30
+    return 0;
+}
+
+```
+
+
 
 ## 📊 Dönüşüm Formatları
 
