@@ -17,7 +17,7 @@
 - [Proje Gereksinimleri](#proje-gereksinimleri)
 - [Fonksiyon Prototipi](#fonksiyon-prototipi)
 - [Variadic Fonksiyonlar](#variadic-fonksiyonlar)
-  - 
+    - [va_list, va_start, va_arg, va_end](#va_list-va_start-va_arg-va_end)
 - [Dönüşüm Formatları](#dönüşüm-formatları)
 - [Örnek Kullanım](#örnek-kullanım)
 - [Kaynaklar](#kaynaklar)
@@ -110,37 +110,8 @@ int main() {
     print_numbers(3, 10, 20, 30);  // Çıktı: 10 20 30
     return 0;
 }
-Bu variadic özellikler, `ft_printf` fonksiyonunda farklı veri türlerini aynı fonksiyon içinde işleyebilmemizi sağlar. Örneğin, `%d`, `%s` ve `%c` gibi dönüşümler için aynı `ft_printf` çağrısında ilgili veri türlerini kullanabiliriz.
-
-### Örnek: Basit Bir Variadic Fonksiyon
-
-Aşağıda basit bir variadic fonksiyon örneği verilmiştir. Bu örnek, bir variadic fonksiyonun nasıl çalıştığını anlamak için iyi bir başlangıçtır.
-
-```c
-
-#include <stdio.h>
-#include <stdarg.h>
-
-void print_numbers(int count, ...) {
-    va_list args;
-    va_start(args, count);
-
-    for (int i = 0; i < count; i++) {
-        int number = va_arg(args, int);
-        printf("%d ", number);
-    }
-
-    va_end(args);
-    printf("\n");
-}
-
-int main() {
-    print_numbers(3, 10, 20, 30);  // Çıktı: 10 20 30
-    return 0;
-}
-
 ```
-
+Bu variadic özellikler, `ft_printf` fonksiyonunda farklı veri türlerini aynı fonksiyon içinde işleyebilmemizi sağlar. Örneğin, `%d`, `%s` ve `%c` gibi dönüşümler için aynı `ft_printf` çağrısında ilgili veri türlerini kullanabiliriz.
 
 
 ## 📊 Dönüşüm Formatları
