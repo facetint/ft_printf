@@ -14,7 +14,6 @@
 
 ## 📜 İçerik
 - [Genel Bakış](#genel-bakış)
-- [Proje Gereksinimleri](#proje-gereksinimleri)
 - [Fonksiyon Prototipi](#fonksiyon-prototipi)
 - [Variadic Fonksiyonlar](#variadic-fonksiyonlar)
     - [🛠 va_list, va_start, va_arg, va_end](#va_list-va_start-va_arg-va_end)
@@ -35,18 +34,6 @@
 
 </div>
 
----
-
-## Proje Gereksinimleri
-
-  - **Kütüphane Adı**: `libftprintf.a`
-  - **Dosyalar**: `Makefile`, `*.h`, `*/*.h`, `*.c`, `*/*.c`
-  - **Harici Fonksiyonlar**: 
-    - `malloc`, `free`, `write`, `va_start`, `va_arg`, `va_copy`, `va_end`
-  - **Libft Kullanımı**: Evet, `libft` fonksiyonları kullanılabilir.
-  - **Kütüphane Oluşturma**: `ar` komutu kullanılmalı; `libtool` yasak.
-  - **Buffer Yönetimi**: Gerçek `printf` gibi buffer yönetimi yapılmamalıdır.
-    
 ---
 
 ## Fonksiyon Prototipi
